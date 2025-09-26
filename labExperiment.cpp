@@ -11,7 +11,7 @@ int main(){
     cout<<"Randomly generated course codes:\n";
     for(int i=0;i<n;i++){
         course_Code[i]=rand()%100+100;//course codes between 100-199
-        cout<<course_Code[i]<<" , ";
+        cout<<course_Code[i]<<" , qw";
     }
     cout<<endl;
     long long totalInversions=0;
