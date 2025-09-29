@@ -2,6 +2,8 @@
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
+#include<map>
+#include<vector>
 using namespace std;
 long long mergeAndCount(int arr[], int l, int m, int r){
     int n1=m-l+1;
@@ -37,14 +39,32 @@ long long countInversions(int arr[], int l, int r){
 int main(){
     int n = 100;
     int courseCodes[100];
+    int num=1;
+    map<int,vector<int>> invGroups;
     srand(time(0));
     cout<<"Randomly generated course codes:\n";
-    for(int i=0;i<n;i++){
-        courseCodes[i]=rand()%100+100;
-        cout<<courseCodes[i]<<" ";
+    while(num<=100){
+            cout<<"For Student "<<num<<":- choice-codes ";
+            for(int i=0;i<n;i++){
+                courseCodes[i]=rand()%10+10;
+                cout<<courseCodes[i]<<" ";
+            }
+            long long totalInversions = countInversions(courseCodes,0,n-1);
+            if(totalInversions<=3){
+                invGroups[totalInversions].push_back(num);
+            }
+            cout<<"\nTotal Inversions for Student -"<<num<<totalInversions<<endl;
+            num++;
+            cout<<endl;
     }
-    cout<<endl;
-    long long totalInversions = countInversions(courseCodes,0,n-1);
-    cout<<"\nTotal Inversions = "<<totalInversions<<endl;
+    cout<<"Students with 0,1,2,3 inversions"<<endl;
+    for(int i=0;i<3;i++){
+        cout<<"Students with "<< i << "inversions :- ";
+        if(invGroups.count(i)){
+            for(int id:invGroups[i]) cout << id<<" ";
+            cout<<endl;
+        }
+        else cout<<"None"<<endl;
+    }
     return 0;
 }
