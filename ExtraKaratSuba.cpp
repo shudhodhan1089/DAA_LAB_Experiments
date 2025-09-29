@@ -107,13 +107,11 @@ int main()
     cout << "Enter second large integer: ";
     if(!(cin >> num2)) return 0;
 
-    // ---------- INPUT VALIDATION ----------
     if (!isValidDecimal(num1) || !isValidDecimal(num2)){
         cout << "ooh unexpected error occured" << endl;
         return 0;
     }
 
-    // ---------- CALCULATION ----------
     string product = karatsuba(num1, num2);
     cout << "Karatsuba Product = " << product << endl;
     return 0;
